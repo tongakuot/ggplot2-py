@@ -1,0 +1,36 @@
+---
+title: ''
+author: 'Alier Reng'
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+## Loading the Required Libraries
+
+```{python}
+import polars as pl
+from plotnine import *
+from mizani.labels import label_number
+```
+
+
+```{python}
+from palmerpenguins import load_penguins 
+penguins = load_penguins()
+print(penguins)
+```
+
+## Plot a facet_wrap
+
+```{python}
+# | warning: false
+# | message: false
+(
+    ggplot(penguins, 
+    aes('bill_length_mm', 'flipper_length_mm'))
+    + geom_point(aes(color='species', shape='species'))
+    + facet_wrap('island')
+)
+```
